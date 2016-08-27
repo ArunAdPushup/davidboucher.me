@@ -1,7 +1,129 @@
 <!doctype html>
 <html>
-<body>
-<h1> Hello World!</h1>
-<p>I'm hosting this on Github. Check back here soon for actual content<p>
-</body>
+	<head>
+		<title>Let's Play Tic Tac Toe</title>
+	</head>
+	<style>
+	body {
+		width: 599px;
+		height: 1000px;
+	} 
+	section {
+		font-color: white;
+		font-size: 12px;
+	}
+	button {
+		position: center;
+		width: 100%;
+		margin-top: 5%;
+	}
+	#ticTackToeBoard {
+		background: green;
+		height: 599px;
+		width: 599px;
+		display: inline-block;
+	}
+	div {
+		background: black;
+		width: 197px;
+		height: 197px;
+		margin: 1px;
+		float: left;
+	}
+	.playerOne {
+		background: url(./images/circle.png);
+	}
+	.playerTwo {
+		background: url(./images/cross.png);
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+
+	<body>
+		<section id="ticTackToeBoard">
+			<div id="squareTL" class="default"><p></p></div>
+			<div id="squareTC" class="default"><p></p></div>
+			<div id="squareTR" class="default"><p></p></div>
+			<div id="squareCL" class="default"><p></p></div>
+			<div id="squareCC" class="default"><p></p></div>
+			<div id="squareCR" class="default"><p></p></div>
+			<div id="squareBL" class="default"><p></p></div>
+			<div id="squareBC" class="default"><p></p></div>
+			<div id="squareBR" class="default"><p></p></div>
+			<button type="button" id="beginTheGame">Begin The Game</button>
+			<p id="turn"></p>
+			<button type="button" id="restartTheGame" style="display:none">Restart the Game</button>
+		</section>
+		<section id="toDoList">
+			<h3>Things to Work On</h3>
+			<ul>
+				<li>Selecting whether to play a player or a computer</li>
+				<li>Computer playing logic</li>
+				<li>Stopping a class toggle when a player clicks on an already chosen square.</li>
+				<li>Logic for winning a game</li>
+			</ul>
+		</section>
+
+
+	<script>
+
+jQuery(function(){
+			var turnToGo = "myGo";
+ 			var divSelecton = $("#ticTackToeBoard > div");
+ 			var restartGame = $("#restartTheGame");
+
+ 	//Starting the Game Logic
+	$("#beginTheGame").click(function(){
+ 		$(restartGame).show();;
+ 		$("#turn").html("Click on a Tile to Select your position");
+ 		
+ 	//Gameplay Logic
+	$(divSelecton).click(function (){
+			if (turnToGo === "myGo") {
+				$(this).toggleClass("default, playerOne");
+					turnToGo = "Your Go";
+					$("#turn").html("It is currently Player Two's Turn");
+			} else {
+				$(this).toggleClass("default, playerTwo");
+					turnToGo = "myGo";
+				$("#turn").html("It is currently Player One's Turn");
+			};
+	});
+ 	});
+ 	
+ 	//Logic for Winning a Game
+
+	// Logic to restart the game
+	$(restartGame).click(function(){
+		$(divSelecton).removeClass("playerTwo playerOne");
+		$(this).hide();
+	});
+});
+
+
+
+	</script>
+
+	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
