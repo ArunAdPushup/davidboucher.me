@@ -41,15 +41,15 @@
 
 	<body>
 		<section id="ticTackToeBoard">
-			<div id="squareTL" class="default"><p></p></div>
-			<div id="squareTC" class="default"><p></p></div>
-			<div id="squareTR" class="default"><p></p></div>
-			<div id="squareCL" class="default"><p></p></div>
-			<div id="squareCC" class="default"><p></p></div>
-			<div id="squareCR" class="default"><p></p></div>
-			<div id="squareBL" class="default"><p></p></div>
-			<div id="squareBC" class="default"><p></p></div>
-			<div id="squareBR" class="default"><p></p></div>
+			<div id="squareTL" class="default"></div>
+			<div id="squareTC" class="default"></div>
+			<div id="squareTR" class="default"></div>
+			<div id="squareCL" class="default"></div>
+			<div id="squareCC" class="default"></div>
+			<div id="squareCR" class="default"></div>
+			<div id="squareBL" class="default"></div>
+			<div id="squareBC" class="default"></div>
+			<div id="squareBR" class="default"></div>
 			<button type="button" id="beginTheGame">Begin The Game</button>
 			<p id="turn"></p>
 			<button type="button" id="restartTheGame" style="display:none">Restart the Game</button>
@@ -59,8 +59,11 @@
 			<ul>
 				<li>Selecting whether to play a player or a computer</li>
 				<li>Computer playing logic</li>
-				<li>Stopping a class toggle when a player clicks on an already chosen square.</li>
+				<li>Stopping a class toggle when a player clicks on an already chosen square.<strong>Complete</strong></li>
 				<li>Logic for winning a game</li>
+				<li>Begin Game needs to reset the playfield, too.<strong>Complete</strong></li>
+				<li>Player scoring when winning a game.</li>
+				<li>Possibly using cookies(?) to store user winning history.</li>
 			</ul>
 		</section>
 
@@ -68,38 +71,75 @@
 	<script>
 
 jQuery(function(){
-			var turnToGo = "myGo";
- 			var divSelecton = $("#ticTackToeBoard > div");
+			var turnToGo = "notBegun";
+			var squareTL = $("#squareTL");
+			var squareTC = $("#squareTC");
+			var squareTR = $("#squareTR");
+			var squareCL = $("#squareCL");
+			var squareCC = $("#squareCC");
+			var squareCR = $("#squareCR");
+			var squareBL = $("#squareBL");
+			var squareBC = $("#squareBC");
+			var squareBR = $("#squareBR");
+			var boardGame = [squareTL, squareTC, squareTR, squareCL, squareCC, squareCR, squareBL, squareBC, squareBR];			
+ 			console.log(turnToGo);
  			var restartGame = $("#restartTheGame");
 
  	//Starting the Game Logic
 	$("#beginTheGame").click(function(){
  		$(restartGame).show();;
  		$("#turn").html("Click on a Tile to Select your position");
- 		
- 	//Gameplay Logic
-	$(divSelecton).click(function (){
-			if (turnToGo === "myGo") {
-				$(this).toggleClass("default, playerOne");
-					turnToGo = "Your Go";
-					$("#turn").html("It is currently Player Two's Turn");
-			} else {
-				$(this).toggleClass("default, playerTwo");
-					turnToGo = "myGo";
-				$("#turn").html("It is currently Player One's Turn");
-			};
-	});
+ 		$.each(boardGame, function(index) {
+ 			$(this).removeClass("playerTwo playerOne").addClass("default");
+ 		});
+ 		$("#turn").html("It is currently Player One's Turn");
+ 		 turnToGo = "playerOneGo";
  	});
- 	
+		//Gameplay Logic
+	
  	//Logic for Winning a Game
 
 	// Logic to restart the game
 	$(restartGame).click(function(){
-		$(divSelecton).removeClass("playerTwo playerOne");
+		$.each(boardGame, function(index) {
+			$(this).removeClass('playerOne playerTwo').addClass('default');
+		});
+		$('#turn').hide();
 		$(this).hide();
-	});
-});
+		var turnToGo = "notBegun";
 
+	});
+	$.each(boardGame, function(index){
+		$(this).on("click", function() {
+
+			var squareIDValue = $(this).attr('id');
+			var squareClassValue = $(this).attr('class');
+			
+
+			if (turnToGo === "playerOneGo" && squareClassValue ==='default') {
+				$(this).removeClass('default').addClass('playerOne');
+				turnToGo = "playerTwoGo";
+				$("#turn").html("It is currently Player Two's Turn");
+			}
+			else if (turnToGo === "playerTwoGo" && squareClassValue ==='default') {
+				$(this).removeClass('default').addClass('playerTwo');
+				turnToGo = "playerOneGo";
+				$("#turn").html("It is currently Player One's Turn");
+			}
+			else if (squareClassValue !== 'default') {
+				console.log("Someone has already chosen this square. Please pick another");
+
+			}
+			else {
+
+			}	
+	})});
+
+
+
+
+
+});
 
 
 	</script>
