@@ -26,59 +26,89 @@ jQuery(function(){
  			var playerTwoScore = $('#playerTwoScore');
  			playerOneScore.html(p1score);
  			playerTwoScore.html(p2score);
+ 			var difficultySelection, selectOpponent;
+ 			console.log(selectOpponent);
 
 
+ 			var beginTheGame = function() {
+ 				//Preparing game difficulty for computer player.
+								difficultySelection = $('input[name="gameDifficulty"]:checked').val();
+							//Asking the user whether they want to play against a player or a computer
+								selectOpponent = $('input[name="selectOpponent"]:checked').val();
+								console.log(selectOpponent);
+ 				$(restartGame).show();
+ 				$("#turn").html("Click on a Tile to Select your position");
+ 				$.each(boardGame, function(index) {
+ 					$(this).removeClass("playerTwo playerOne").addClass("default");
+ 				});
+ 				$("#turn").html("It is currently Player One's Turn");
+ 				 turnToGo = "playerOneGo";
+ 				 winTheGame.html('');
+ 				 $("#computerDifficulty").hide();
+ 				 $("#computerYesOrNo").hide();
+ 			}
 
+ 			var restartTheGame = function() {
+ 				$.each(boardGame, function(index) {
+				$(this).removeClass('playerOne playerTwo').addClass('default');
+					});
+				$('#turn').hide();
+				$(this).hide();
+				var turnToGo = "notBegun";
+				winTheGame.html('');
+				$("#computerDifficulty").show();
+ 		 		$("#computerYesOrNo").show();
+ 			}
 
- //Starting the Game Logic
+//Starting the Game Logic
 	$("#beginTheGame").click(function(){
- 		$(restartGame).show();
- 		$("#turn").html("Click on a Tile to Select your position");
- 		$.each(boardGame, function(index) {
- 			$(this).removeClass("playerTwo playerOne").addClass("default");
- 		});
- 		$("#turn").html("It is currently Player One's Turn");
- 		 turnToGo = "playerOneGo";
- 		 winTheGame.html('');
+		beginTheGame();
  	});
-//Gameplay Logic
-
-
+console.log(selectOpponent);
 // Logic to restart the game
 	$(restartGame).click(function(){
-		$.each(boardGame, function(index) {
-			$(this).removeClass('playerOne playerTwo').addClass('default');
-		});
-		$('#turn').hide();
-		$(this).hide();
-		var turnToGo = "notBegun";
-		winTheGame.html('');
-
+		restartTheGame();
 	});
-//Logic for selecting tiles whilst making sure a tile isn't already selected.
-	$.each(boardGame, function(index){
-		$(this).on("click", function() {
 
-			var squareIDValue = $(this).attr('id');
-			var squareClassValue = $(this).attr('class');
+		// Rules When you are playing a human.
+		//Logic for selecting tiles whilst making sure a tile isn't already selected.
+		$.each(boardGame, function(index){
+				$(this).on("click", function() {
 
-			if (turnToGo === "playerOneGo" && squareClassValue ==='default') {
-				$(this).removeClass('default').addClass('playerOne');
-				turnToGo = "playerTwoGo";
-				$("#turn").html("It is currently Player Two's Turn");
-				$('#wrongTile').html("");
-			}
-			else if (turnToGo === "playerTwoGo" && squareClassValue ==='default') {
-				$(this).removeClass('default').addClass('playerTwo');
-				turnToGo = "playerOneGo";
-				$("#turn").html("It is currently Player One's Turn");
-				$('#wrongTile').html("");
-			}
-			else if (squareClassValue !== 'default') {
-				$('#wrongTile').html("Somebody has already selected this tile. Please select another");
+					if (selectOpponent === "Player") {
+						console.log(selectOpponent);
+						var squareIDValue = $(this).attr('id');
+						var squareClassValue = $(this).attr('class');
 
-			}
-			})});
+						if (turnToGo === "playerOneGo" && squareClassValue ==='default') {
+							$(this).removeClass('default').addClass('playerOne');
+							turnToGo = "playerTwoGo";
+							$("#turn").html("It is currently Player Two's Turn");
+							$('#wrongTile').html("");
+						}
+						else if (turnToGo === "playerTwoGo" && squareClassValue ==='default') {
+							$(this).removeClass('default').addClass('playerTwo');
+							turnToGo = "playerOneGo";
+							$("#turn").html("It is currently Player One's Turn");
+							$('#wrongTile').html("");
+						}
+						else if (squareClassValue !== 'default') {
+							$('#wrongTile').html("Somebody has already selected this tile. Please select another");
+						}}
+					else if (selectOpponent === "Computer") {
+						console.log("This should be displaying everytime I try to click on a square and nothing happens");
+						// My go must be the same above, and the computer's go must be the same turn as mine so one of my clicks also triggers
+						//a computer move. Trick will be to get the computer to 
+
+
+
+					}
+
+
+					})});
+	
+	
+	
 // Winning the Game Logic
 	$.each(boardGame, function(index) {
 		$(this).on("click", function(){
