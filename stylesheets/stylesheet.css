@@ -24,9 +24,13 @@ body {
 		margin: 1px;
 		float: left;
 	}
+	h6 {
+		font-size: 15px;
+	}
 	.playerOne {
 		background: url(../images/circle.png);
 	}
 	.playerTwo {
 		background: url(../images/cross.png);
 	}
+	

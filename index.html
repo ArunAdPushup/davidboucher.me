@@ -18,9 +18,17 @@
 			<div id="squareBL" class="default"></div>
 			<div id="squareBC" class="default"></div>
 			<div id="squareBR" class="default"></div>
+			<p id="winTheGame"></p>
 			<button type="button" id="beginTheGame">Begin The Game</button>
-			<p id="turn"></p>
 			<button type="button" id="restartTheGame" style="display:none">Restart the Game</button>
+			<p id="turn"></p>
+			<p id="wrongTile"></p>
+				<section id="scoreBoard">
+					<h6>Player One's Score</h6>
+						<p id="playerOneScore" class="scoreBoard"></p>
+					<h6>Player Two's Score</h6>
+						<p id="playerTwoScore" class="scoreBoard"></p>
+				</section>
 		</section>
 		<section id="toDoList">
 			<h3>Things to Work On</h3>
@@ -28,10 +36,11 @@
 				<li>Selecting whether to play a player or a computer</li>
 				<li>Computer playing logic</li>
 				<li>Stopping a class toggle when a player clicks on an already chosen square.<strong>Complete</strong></li>
-				<li>Logic for winning a game</li>
+				<li>Logic for winning a game<strong>Complete</strong></li>
 				<li>Begin Game needs to reset the playfield, too.<strong>Complete</strong></li>
-				<li>Player scoring when winning a game.</li>
+				<li>Player scoring when winning a game.<strong>Complete</strong></li>
 				<li>Possibly using cookies(?) to store user winning history.</li>
+				<li>Do not allow players to continue selecting tiles when the game has finished.</li>
 			</ul>
 		</section>
 		<script src="./javascript/javascript.js"></script>
