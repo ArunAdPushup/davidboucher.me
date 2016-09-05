@@ -59,17 +59,17 @@ li a:hover:not(.active) {
         margin: 1px;
         float: left;
     }
-        .playerOne {
-        background: url(../ticTacToe/circle.png);
+.playerOne {
+        background: url(./images/circle.png);
         background-repeat: no-repeat;
         position: center;
     }
-    .playerTwo {
-        background: url(../ticTacToe/cross.png);
+.playerTwo {
+        background: url(./images/cross.png);
         background-repeat: no-repeat;
         position: center;       
     }
-    .scoreBox {
+.scoreBox {
         display: inline-block;
         width: 33%;
         height: 33px;
@@ -77,7 +77,11 @@ li a:hover:not(.active) {
         border: 0px;
     }
 button {
-        position: center;
+        position: bottom;
         width: 100%;
         margin-top: 5%;
     }
+#scoreBoard {
+    width: 50%;
+    height: 100px;
+}
