@@ -28,7 +28,7 @@ li a {
     text-decoration: none;
 }
 
-li a.active {
+li a.clicked {
     background-color: #4CAF50;
     color: white;
 }
