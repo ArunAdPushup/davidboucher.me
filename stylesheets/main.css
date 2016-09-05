@@ -60,12 +60,12 @@ li a:hover:not(.active) {
         float: left;
     }
 .playerOne {
-        background: url(./images/circle.png);
+        background: url(../images/circle.png);
         background-repeat: no-repeat;
         position: center;
     }
 .playerTwo {
-        background: url(./images/cross.png);
+        background: url(../images/cross.png);
         background-repeat: no-repeat;
         position: center;       
     }
