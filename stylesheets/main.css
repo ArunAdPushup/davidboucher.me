@@ -60,11 +60,11 @@ li a:hover:not(.active) {
         float: left;
     }
 .playerOne {
-        background-image: url("images/circle.png");
+        background-image: url("../images/circle.png");
         background-repeat: no-repeat;
     }
 .playerTwo {
-        background-image: url("images/cross.png");
+        background-image: url("../images/cross.png");
         background-repeat: no-repeat;      
     }
 .scoreBox {
