@@ -31,12 +31,12 @@ div {
 		font-size: 15px;
 	}
 	.playerOne {
-		background: url(.circle.png);
+		background: url(circle.png);
 		background-repeat: no-repeat;
 		position: center;
 	}
 	.playerTwo {
-		background: url(.cross.png);
+		background: url(cross.png);
 		background-repeat: no-repeat;
 		position: center;		
 	}
