@@ -1,1 +1,1 @@
-$('#projectContent').load("../ticTacToe/ticTacToe.html #tttBoard");
+$('#projectContent').load("/ticTacToe/ticTacToe.html #tttBoard");
