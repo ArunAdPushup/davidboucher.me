@@ -3,13 +3,25 @@
 	<head>
 		<title>Let's Play Tic Tac Toe</title>
 		<link href="./images/logo-favicon.png" rel="icon" type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
 
 	</head>
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 	<body>
-	<div id="projectContent">
+		<nav id="menu-bar">
+			<ul>
+				<li id="homePage"><a href="./index.html" class="unClicked" >Home Page</a></li>
+				<li id="TTT"><a href="#" class="unClicked">Tic Tac Toe</a></li>
+				<li id="Pong"><a href="#" class="unClicked">Pong</a></li>
+				<li id="footballScores"><a href="#" class="unClicked">Football Scores</a></li>
+			</ul>
+		</nav>
+
+	<!-- The section below is loaded in depending on what li element the user clicks on above. -->
+	<section id="projectContent">
+		<p></p>
+	</section>
 		
-	</div>
 
 <script src="./mainJavascript/mainJS.js"></script>
 	</body>
