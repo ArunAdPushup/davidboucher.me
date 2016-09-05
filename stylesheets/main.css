@@ -62,12 +62,10 @@ li a:hover:not(.active) {
 .playerOne {
         background-image: url("images/circle.png");
         background-repeat: no-repeat;
-        position: center;
     }
 .playerTwo {
         background-image: url("images/cross.png");
-        background-repeat: no-repeat;
-        position: center;       
+        background-repeat: no-repeat;      
     }
 .scoreBox {
         display: inline-block;
