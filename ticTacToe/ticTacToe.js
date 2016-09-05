@@ -1,3 +1,5 @@
+console.log(window.location.href);
+
 jQuery(function(){
 			var turnToGo = "notBegun";
 			var squareTL = $("#squareTL");
