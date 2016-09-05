@@ -3,79 +3,14 @@
 	<head>
 		<title>Let's Play Tic Tac Toe</title>
 		<link href="./images/logo-favicon.png" rel="icon" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
 
 	</head>
 		<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 	<body>
-		<section id="ticTackToeBoard">
-			<div id="squareTL" class="default"></div>
-			<div id="squareTC" class="default"></div>
-			<div id="squareTR" class="default"></div>
-			<div id="squareCL" class="default"></div>
-			<div id="squareCC" class="default"></div>
-			<div id="squareCR" class="default"></div>
-			<div id="squareBL" class="default"></div>
-			<div id="squareBC" class="default"></div>
-			<div id="squareBR" class="default"></div>
-			<br>
+	<div id="projectContent">
+		
+	</div>
 
-			<form id="computerDifficulty">
-				<h3>Please Select Your Difficulty When facing the computer</h3>
-  				<input type="radio" class="difficultySelection" name="gameDifficulty" value="easy" checked>Easy<br>
-  				<input type="radio" class="difficultySelection" name="gameDifficulty" value="medium">Medium<br>
-  				<input type="radio" class="difficultySelection" name="gameDifficulty" value="hard">Hard
-			</form>
-			<form id="computerYesOrNo">
-				<h3>Would you like to play against a computer or a player?</h3>
-  				<input type="radio" class="selectOpponent" name="selectOpponent" value="Computer">Computer<br>
-  				<input type="radio" class="selectOpponent" name="selectOpponent" value="Player" checked>Player
-			</form>
-			<p id="winTheGame"></p>
-			<button type="button" id="beginTheGame">Begin The Game</button>
-			<button type="button" id="restartTheGame" style="display:none">Restart the Game</button>
-			<p id="turn"></p>
-			<p id="wrongTile"></p>
-				<section id="scoreBoard">
-					<h6>Player One's Score</h6>
-						<p id="playerOneScore" class="scoreBoard"></p>
-					<h6>Player Two's Score</h6>
-						<p id="playerTwoScore" class="scoreBoard"></p>
-				</section>
-		</section>
-		<section id="toDoList">
-			<h3>Things to Work On</h3>
-			<ul>
-				<li>Selecting whether to play a player or a computer<strong>Complete</strong></li>
-				<li>Computer playing logic</li>
-				<li>Stopping a class toggle when a player clicks on an already chosen square.<strong>Complete</strong></li>
-				<li>Logic for winning a game<strong>Complete</strong></li>
-				<li>Begin Game needs to reset the playfield, too.<strong>Complete</strong></li>
-				<li>Player scoring when winning a game.<strong>Complete</strong></li>
-				<li>Possibly using cookies(?) to store user winning history.</li>
-			</ul>
-		</section>
-		<script src="./javascript/javascript.js"></script>
+<script src="./mainJavascript/mainJS.js"></script>
 	</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

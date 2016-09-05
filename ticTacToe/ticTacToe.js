@@ -26,16 +26,11 @@ jQuery(function(){
  			var playerTwoScore = $('#playerTwoScore');
  			playerOneScore.html(p1score);
  			playerTwoScore.html(p2score);
- 			var difficultySelection, selectOpponent;
- 			console.log(selectOpponent);
+ 		
 
 
  			var beginTheGame = function() {
- 				//Preparing game difficulty for computer player.
-								difficultySelection = $('input[name="gameDifficulty"]:checked').val();
-							//Asking the user whether they want to play against a player or a computer
-								selectOpponent = $('input[name="selectOpponent"]:checked').val();
-								console.log(selectOpponent);
+
  				$(restartGame).show();
  				$("#turn").html("Click on a Tile to Select your position");
  				$.each(boardGame, function(index) {
@@ -44,8 +39,6 @@ jQuery(function(){
  				$("#turn").html("It is currently Player One's Turn");
  				 turnToGo = "playerOneGo";
  				 winTheGame.html('');
- 				 $("#computerDifficulty").hide();
- 				 $("#computerYesOrNo").hide();
  			}
 
  			var restartTheGame = function() {
@@ -56,15 +49,13 @@ jQuery(function(){
 				$(this).hide();
 				var turnToGo = "notBegun";
 				winTheGame.html('');
-				$("#computerDifficulty").show();
- 		 		$("#computerYesOrNo").show();
  			}
 
 //Starting the Game Logic
 	$("#beginTheGame").click(function(){
 		beginTheGame();
  	});
-console.log(selectOpponent);
+
 // Logic to restart the game
 	$(restartGame).click(function(){
 		restartTheGame();
@@ -74,9 +65,6 @@ console.log(selectOpponent);
 		//Logic for selecting tiles whilst making sure a tile isn't already selected.
 		$.each(boardGame, function(index){
 				$(this).on("click", function() {
-
-					if (selectOpponent === "Player") {
-						console.log(selectOpponent);
 						var squareIDValue = $(this).attr('id');
 						var squareClassValue = $(this).attr('class');
 
@@ -94,21 +82,12 @@ console.log(selectOpponent);
 						}
 						else if (squareClassValue !== 'default') {
 							$('#wrongTile').html("Somebody has already selected this tile. Please select another");
-						}}
-					else if (selectOpponent === "Computer") {
-						console.log("This should be displaying everytime I try to click on a square and nothing happens");
-						// My go must be the same above, and the computer's go must be the same turn as mine so one of my clicks also triggers
-						//a computer move. Trick will be to get the computer to 
-
-
-
-					}
-
-
-					})});
-	
-	
-	
+						}
+						else if (turnToGo === "ended") {
+							return;
+						}
+					})
+					});
 // Winning the Game Logic
 	$.each(boardGame, function(index) {
 		$(this).on("click", function(){
@@ -121,11 +100,15 @@ console.log(selectOpponent);
 	(rightColumn.every(function(value) { return value.attr('class') === "playerOne";}) === true) || 
 	(leftDiagonal.every(function(value) { return value.attr('class') === "playerOne";}) === true) || 
 	(rightDiagonal.every(function(value) { return value.attr('class') === "playerOne";}) === true)) 
-		{
-	winTheGame.html('Player One Has Won The Game. Congratulations');
-	p1score += 1;
-	playerOneScore.html(p1score);
-	console.log(p1score);
+				{
+		if (turnToGo === "ended") {
+			return;
+		} else if (turnToGo !== "ended") {
+			p1score += 1;
+			playerOneScore.html(p1score);
+			winTheGame.html('Player One Has Won The Game. Congratulations');
+			turnToGo = "ended";
+		}
 } else if (	
 	(topRow.every(function(value) { return value.attr('class') === "playerTwo";}) === true) || 
 	(middleRow.every(function(value) { return value.attr('class') === "playerTwo";}) === true) || 
@@ -135,16 +118,17 @@ console.log(selectOpponent);
 	(rightColumn.every(function(value) { return value.attr('class') === "playerTwo";}) === true) || 
 	(leftDiagonal.every(function(value) { return value.attr('class') === "playerTwo";}) === true) || 
 	(rightDiagonal.every(function(value) { return value.attr('class') === "playerTwo";}) === true)) 
-{
-	winTheGame.html('Player Two Has Won The Game. Congratulations');
-	p2score += 1;
-	playerTwoScore.html(p2score);
-	console.log(p2score);
+{	
+			if (turnToGo === "ended") {
+			return;
+		} else if (turnToGo !== "ended") {
+			p2score += 1;
+			playeTwoScore.html(p1score);
+			winTheGame.html('PlayerTwo Has Won The Game. Congratulations');
+			turnToGo = "ended";
+				}		
 } else {}
 });
 	});	
- 				
-
-
-});
+ });
 
