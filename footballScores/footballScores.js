@@ -7,7 +7,7 @@ function(leagueURL) {
 	$.get(leagueURL, function(data){
 		$("#foodballScoreContent").html(data);
 		console.log(data);
-	})
+	});
 };
 
 $("form").on("submit", function(event){
