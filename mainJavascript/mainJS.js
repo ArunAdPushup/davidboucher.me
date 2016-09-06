@@ -1,5 +1,3 @@
-console.log(window.location.href);
-
 // Load different javascript creations based upon what nav element the user clicks on.
 $("#menu-bar li").on("click", function()
 {

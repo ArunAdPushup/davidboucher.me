@@ -125,8 +125,8 @@ jQuery(function(){
 			return;
 		} else if (turnToGo !== "ended") {
 			p2score += 1;
-			playeTwoScore.html(p1score);
-			winTheGame.html('PlayerTwo Has Won The Game. Congratulations');
+			playeTwoScore.html(p2score);
+			winTheGame.html('Player Two Has Won The Game. Congratulations');
 			turnToGo = "ended";
 				}		
 } else {}
