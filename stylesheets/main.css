@@ -47,13 +47,13 @@ li a:hover:not(.active) {
 
 
 #ticTackToeBoard {
-        background: green;
+        background: black;
         height: 600px;
         width: 600px;
         display: inline-block;
     }
 #ticTackToeBoard > div {
-        background: black;
+        border-color: green;
         width: 200px;
         height: 200px;
         margin: 1px;
