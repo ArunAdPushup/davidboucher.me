@@ -47,16 +47,18 @@ li a:hover:not(.active) {
 
 
 #ticTackToeBoard {
-        background: black;
-        height: 600px;
-        width: 600px;
+        height: 606px;
+        width: 606px;
         display: inline-block;
+        background-color: green;
+        margin-left: 25%;
     }
 #ticTackToeBoard > div {
-        border-color: green;
+        border-style: solid;
+        border-color: black;
+        border-width: 1px;
         width: 200px;
         height: 200px;
-        margin: 1px;
         float: left;
     }
 .playerOne {
@@ -67,19 +69,21 @@ li a:hover:not(.active) {
         background-image: url("../images/cross.png");
         background-repeat: no-repeat;      
     }
+#gameText {
+    float: right;
+    width: 250px;
+    height: 100px;
+}
 .scoreBox {
         display: inline-block;
-        width: 33%;
+        width: 200px;
         height: 33px;
         margin: 0px;
         border: 0px;
     }
 button {
+        margin-left: 25%;
         position: bottom;
-        width: 100%;
+        width: 33%;
         margin-top: 5%;
     }
-#scoreBoard {
-    width: 50%;
-    height: 100px;
-}
