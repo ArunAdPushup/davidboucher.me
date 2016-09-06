@@ -3,11 +3,14 @@ var league;
 var leagueCode;
 
 
-function(leagueURL) {
+var request = function(leagueURL) {
+
 	$.get(leagueURL, function(data){
 		$("#foodballScoreContent").html(data);
 		console.log(data);
 	});
+
+
 };
 
 $("form").on("submit", function(event){
