@@ -50,12 +50,11 @@ li a:hover:not(.active) {
         height: 606px;
         width: 606px;
         display: inline-block;
-        background-color: green;
-        margin-left: 25%;
+        background-color: black;
     }
 #ticTackToeBoard > div {
         border-style: solid;
-        border-color: black;
+        border-color: white;
         border-width: 1px;
         width: 200px;
         height: 200px;
@@ -64,10 +63,12 @@ li a:hover:not(.active) {
 .playerOne {
         background-image: url("../images/circle.png");
         background-repeat: no-repeat;
+        position: center;
     }
 .playerTwo {
         background-image: url("../images/cross.png");
-        background-repeat: no-repeat;      
+        background-repeat: no-repeat;
+        position: center;      
     }
 #gameText {
     float: right;
