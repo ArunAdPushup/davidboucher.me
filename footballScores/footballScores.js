@@ -23,13 +23,15 @@ var sortData = function(apiData){
 		}		
 };
 
-var request = function(leagueURL) {
-	$.get({
+var request = function(leagueURL){
+	$.ajax({
 		url: leagueURL,
-	}).done(function(data){
-		console.log(data);
-		sortData(data);
-	}); 
+		dataType: 'jsonp',
+		success: function(data){
+			console.log(data);
+			sortData(data);	
+		}
+	});
 };
 
 $("#formSubmit").on("click", function(event){
