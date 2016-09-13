@@ -3,7 +3,24 @@ var leagueCode;
 var sortData = function(apiData){
 //what to do with the data when we get it back
 		$("#foodballScoreContent").html(apiData);
-		console.log(apiData);
+		var fixtures = apiData.fixtures;
+		var displayResults = $("$footballScoreContent");
+		var output = [];
+		for (var i = 0, len = fixtures.length; i < len; i++) {
+			output.push({
+				'Home Team': this.homeTeamName,
+				'Home Goals Scored': this.goalsHomeTeam,
+				'Away Goals Scored': this.goalsAwayTeam,
+				'Away Team': this.awayTeamName
+			});
+			if (output.length) {
+				if (console.table) {
+					console.table(output);
+				}
+			} else {
+				console.log("This is logged to the console, so the table isn't working");
+			}
+		}		
 };
 
 var request = function(leagueURL) {
@@ -31,9 +48,8 @@ $("#formSubmit").on("click", function(event){
 		var leagueCode ="434";
 		break;
 	}	
-	console.log(league);
-	console.log(leagueCode);
-	console.log(gameWeek);
 	var correctURL = "http://api.football-data.org/v1/competitions/"+leagueCode+"/fixtures?matchday="+gameWeek;
 	console.log(correctURL);
+	request(correctURL);
+
 });
