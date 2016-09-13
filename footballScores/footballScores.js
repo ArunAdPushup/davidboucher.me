@@ -24,9 +24,12 @@ var sortData = function(apiData){
 };
 
 var request = function(leagueURL) {
-	$.get(leagueURL, function(data){
+	$.get({
+		url: leagueURL,
+	}).done(function(data){
+		console.log(data);
 		sortData(data);
-	});
+	}); 
 };
 
 $("#formSubmit").on("click", function(event){
@@ -49,7 +52,6 @@ $("#formSubmit").on("click", function(event){
 		break;
 	}	
 	var correctURL = "http://api.football-data.org/v1/competitions/"+leagueCode+"/fixtures?matchday="+gameWeek;
-	console.log(correctURL);
 	request(correctURL);
 
 });
