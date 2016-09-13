@@ -24,7 +24,7 @@ var sortData = function(apiData){
 };
 
 var request = function(leagueURL) {
-	$.get("leagueURL", function(data){
+	$.get(leagueURL, function(data){
 		sortData(data);
 	});
 };
