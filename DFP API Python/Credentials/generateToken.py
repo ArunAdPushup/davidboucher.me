@@ -3,7 +3,7 @@ import json
 from googleads import dfp
 from googleads import oauth2
 
-with open('oAuth2Credentials') as data_file:
+with open('../Credentials/oAuth2Credentials') as data_file:
     data = json.load(data_file)
 
 clientSecret = data['clientSecret']
@@ -18,7 +18,8 @@ def getTokens(clientID, clientSecret, scopes):
         scope=scopes,
         user_agent='Ads Python Client Library',
         redirect_uri='http://www.localhost.com',
-        prompt='select_account'
+        approval_prompt='force',
+        access_type='offline'
     )
 
     authorize_url = flow.step1_get_authorize_url()
