@@ -1,23 +1,26 @@
 from oauth2client import client
-import json
-from googleads import dfp
-from googleads import oauth2
 
-with open('../Credentials/oAuth2Credentials') as data_file:
-    data = json.load(data_file)
+def getTokens():
 
-clientSecret = data['clientSecret']
-clientID = data['clientID']
-SCOPE = u'https://www.googleapis.com/auth/dfp'
+    print("If you haven't read the README and got some credentials, cancel this script and go do that.")
 
-def getTokens(clientID, clientSecret, scopes):
+    need_credentials = input("Would you like to stop the script to get credentials? Type YES to do so.")
+    if need_credentials.find("YES" or "yes") != -1:
+        quit()
+
+
+    clientID = input("Paste your client ID here: ")
+    clientSecret = input("Paste your Client Secret Here: ")
+    redirect_uri = input("Paste your redirect_uri here: ")
+    SCOPE = u'https://www.googleapis.com/auth/dfp'
+
 
     flow = client.OAuth2WebServerFlow(
         client_id=clientID,
         client_secret=clientSecret,
         scope=scopes,
         user_agent='Ads Python Client Library',
-        redirect_uri='http://www.localhost.com',
+        redirect_uri=redirect_uri,
         approval_prompt='force',
         access_type='offline'
     )
@@ -30,10 +33,9 @@ def getTokens(clientID, clientSecret, scopes):
     credential = flow.step2_exchange(code)
 
     print("Refresh Token for YAML: ",credential.refresh_token)
-    print("Access Token: ", credential.access_token)
     print("Client ID: ", clientID)
     print("Client Secret: ", clientSecret)
 
     print("Put the ID, Secret, and Refresh Token in the YAML file. Don't run this script again")
 
-getTokens(clientID, clientSecret, SCOPE)
+getTokens()
