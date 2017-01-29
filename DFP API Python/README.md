@@ -9,7 +9,7 @@ We first need to collect security credentials. Navigate to:
 
 The script will be using the Web Application authentication type. On the page, on step 2 make sure to
 select 'Web Application', as shown below.
-    ![Alt Text](https://github.com/Boucher-David/davidboucher.me/tree/master/DFP%20API%20Python/images/dfpCredentialStep1.png?raw=true)
+    ![screenshot](https://raw.github.com/Boucher-David/DFP%20API%20Python/master/images/dfpCredentialsStep1.png)
 
 Click on 'Open the Google Developers Console Credentials Page' and select 'Create a project'
     ![Alt Text](/images/dfpCredentialStep2.png?raw=true)
