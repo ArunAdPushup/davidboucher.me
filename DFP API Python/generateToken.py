@@ -18,7 +18,7 @@ def getTokens():
     flow = client.OAuth2WebServerFlow(
         client_id=clientID,
         client_secret=clientSecret,
-        scope=scopes,
+        scope=SCOPE,
         user_agent='Ads Python Client Library',
         redirect_uri=redirect_uri,
         approval_prompt='force',

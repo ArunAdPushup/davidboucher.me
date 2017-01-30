@@ -1,7 +1,5 @@
 import os
-import time
-
-#from creatives import creative
+from creatives import creative
 from getLineItemID import getLineItems
 from createLineItem import createLineItem
 from getTargetingValues import getTargetingValues
@@ -17,15 +15,19 @@ want to use for Prebid. Go do that now if you haven't already and enter the ID b
 ''')
 
 placement_id = str(input("Please enter your placement ID here: ->>>> "))
-creative_ids = str(input('''
+creative_ids = input('''
 
 
 Next Step is to enter your creative IDs. Until this point, we've created a bunch of line items but haven't yet attached the necessary prebid creatives to them.
 
+You will need one creative for each ad unit you want to use. Ideally you already have these created.
+
 Please enter all the IDs you wish to use in the following format:
 
 1234567890,23456788,1234567890
-->>>> '''))
+->>>> ''').split(',')
+creative_id = list(map(int, creative_ids))
+print(creative_id)
 
 key_id = str(input('''
 
@@ -33,7 +35,8 @@ Next thing you will need is your KEY VALUE ID. For example, Prebid uses hb_pb as
 You can find this ID value by going to:
 
     DFP ->>> Inventory ->>> Key-Values ->>> Search for your Prebid hb_pb key ->>> Click on it.
-    The Key Value ID should be in the URL.
+    The Key Value ID should be in the URL. If you haven't created that yet, go create it and check out
+    the createValues script in this directory.
 
 
 Past it here ->>>>>>>>>>>>'''))
@@ -72,10 +75,8 @@ def main():
     createLineItems = createLineItem.createLineItem(key_id=key_id, path=credential_path, order_id=order_id, placement_id=placement_id,increment=increment,startingAmount=startingAmount,numberOfLines=numberOfLines).main(targetingValues=getValues)
     print("Now getting all line Item IDs and assigning your prebid creatives to them")
     getLineItem = getLineItems.getLineItemID(path=credential_path, order_id=order_id).main()
-    print(getLineItem)
-
-
-
-    #creatives = creative.creatives(creative_ids=creative_ids, path=credential_path, line_item_ids=getLineItem).main()
+    for line_item in getLineItem:
+        for creativeID in creative_id:
+            creatives = creative.creative(path=credential_path, creative_ids=creativeID, line_item_id=line_item, order_id=order_id).main()
 
 main()

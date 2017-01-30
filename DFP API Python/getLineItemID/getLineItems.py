@@ -31,10 +31,10 @@ class getLineItemID:
             if 'results' in response:
                 # Display results.
                 for line_item in response['results']:
-                    LINE_ITEM_ID.append(line_item['id'])
+                    lineItemID = int(line_item['id'])
+                    LINE_ITEM_ID.append(lineItemID)
 
                 statement.offset += googleads.dfp.SUGGESTED_PAGE_LIMIT
             else:
                 break
-
             return LINE_ITEM_ID

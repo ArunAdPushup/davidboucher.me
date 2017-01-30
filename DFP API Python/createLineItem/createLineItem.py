@@ -1,8 +1,7 @@
 from googleads import dfp
-from datetime import date
+from datetime import *
 
 class createLineItem:
-
     def __init__(self, path, order_id, placement_id, increment, startingAmount, numberOfLines,key_id):
         self.path = path
         self.client = dfp.DfpClient.LoadFromStorage(self.path)
@@ -15,7 +14,7 @@ class createLineItem:
 
 
     def main(self, targetingValues):
-        print(len(targetingValues))
+        d = datetime.today() + timedelta(days=1)
         line_item_service = self.client.GetService('LineItemService', version='v201611')
         line_items = []
         microAmountIncrement = int(1000000 * self.increment)
@@ -24,17 +23,15 @@ class createLineItem:
         for _ in range(self.numberOfLines):
             name_id = '{0:.2f}'.format(microAmountStarting / 1000000)
             value_id = targetingValues[str(name_id)]
-            print(self.order_id)
-            print(self.key_id)
 
             line_item = {
                 'name': 'Prebid_%s' % (name_id),
                 'orderId': '%s' % (self.order_id),
                 'startDateTime': {
                     'date': {
-                        'year': '2017',
-                        'month': '1',
-                        'day': str(date.today().day + 1)
+                        'year': '%s' % (d.year),
+                        'month': '%s' % (d.month),
+                        'day': '%s' % (d.day)
                     },
                     'hour': '0',
                     'minute': '0',
@@ -81,9 +78,9 @@ class createLineItem:
                 ]
             }
             line_items.append(line_item)
-            microAmountStarting += microAmountIncrement
             print('Line item with name: {} and price: {} created. '.format(
                 line_item['name'],
                 line_item['costPerUnit']['microAmount']))
+            microAmountStarting += microAmountIncrement
         print (line_items)
         line_items = line_item_service.createLineItems(line_items)
