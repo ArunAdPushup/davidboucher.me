@@ -21,15 +21,20 @@ def main():
     '''))
 
     custom_targeting_service = dfp_client.GetService('CustomTargetingService', version='v201611' )
-    values = []
     for x in range(1,numberOfValues + 1):
-        values.append({
-            'customTargetingKeyId': key_id,
-            'displayName': '{0:.2f}'.format(x / 100),
-            'name': '{0:.2f}'.format(x / 100),
-            'matchType': 'EXACT'
-        })
-    values = custom_targeting_service.createCustomTargetingValues(values)
+        try:
+            values = []
+            values.append({
+                'customTargetingKeyId': key_id,
+                'displayName': '{0:.2f}'.format(x / 100),
+                'name': '{0:.2f}'.format(x / 100),
+                'matchType': 'EXACT'
+            })
+            values = custom_targeting_service.createCustomTargetingValues(values)
+        except Exception:
+            print("Value already created. Moving on to next one.")
+            pass
+    print("Script Complete")
 
 
 dfp_client = dfp.DfpClient.LoadFromStorage(path=credential_path)

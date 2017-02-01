@@ -77,6 +77,9 @@ def main():
     getLineItem = getLineItems.getLineItemID(path=credential_path, order_id=order_id).main()
     for line_item in getLineItem:
         for creativeID in creative_id:
-            creatives = creative.creative(path=credential_path, creative_ids=creativeID, line_item_id=line_item, order_id=order_id).main()
-
+            try:
+                creatives = creative.creative(path=credential_path, creative_ids=creativeID, line_item_id=line_item, order_id=order_id).main()
+            except Exception:
+                print("Creative already in line item, trying next one.")
+                pass
 main()

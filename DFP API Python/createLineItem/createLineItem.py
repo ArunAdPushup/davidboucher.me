@@ -74,6 +74,27 @@ class createLineItem:
                             'height': '1',
                             'isAspectRatio': False
                         }
+                    },
+                    {
+                        'size': {
+                            'width': '160',
+                            'height': '600',
+                            'isAspectRatio': False
+                        }
+                    },
+                    {
+                        'size': {
+                            'width': '728',
+                            'height': '90',
+                            'isAspectRatio': False
+                        }
+                    },
+                    {
+                        'size': {
+                            'width': '300',
+                            'height': '250',
+                            'isAspectRatio': False
+                        }
                     }
                 ]
             }
@@ -82,5 +103,4 @@ class createLineItem:
                 line_item['name'],
                 line_item['costPerUnit']['microAmount']))
             microAmountStarting += microAmountIncrement
-        print (line_items)
         line_items = line_item_service.createLineItems(line_items)
