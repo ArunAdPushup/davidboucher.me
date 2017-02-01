@@ -64,7 +64,7 @@ numberOfLines = int(input('''
     between your desired amounts.
 
 '''))
-
+print("Script Commencing...")
 
 def main():
     path = os.path.dirname(__file__)

@@ -10,7 +10,12 @@ We first need to collect security credentials. Navigate to:
 The script will be using the Web Application authentication type. On the page, on step 2 make sure to
 select 'Web Application', as shown below.
 
+
+
 <img width="894" alt="dfpcredentialstep1" src="https://cloud.githubusercontent.com/assets/17837150/22405589/f78a8e9a-e5f9-11e6-8ff1-826a5af9ac43.png">
+
+
+
 
 Click on 'Open the Google Developers Console Credentials Page' and select 'Create a project'
 
@@ -73,11 +78,11 @@ $150 in 1c increments.
 
 When you are ready simply type 'python createValues' followed by enter. Then input your key_id and number of values.
 
-###Step 3b - Editing the script to include Ad Unit Sizes
+###Step 2b - Editing the script to include Ad Unit Sizes
 
 Open the file 'createLineItem.py' in a text editor. On line 70, I have specified creative placeholder sizes as
 a default. Work out what sizes your ad units are and fill this creativePlaceholders object with those sizes.
-Be very careful to format it properly: with the exact same formatting as I have done just with your sizes instead
+Be very careful to format it properly, with the exact same formatting as I have done just with your sizes instead
 of mine. Also be careful not to include a comma after the final value as this will throw an error.
 
 P.S. If you would line your line items to be called something different than "Prebid_", you can change that
@@ -87,78 +92,84 @@ name on line 28. Ensure you save the script after making changes.
 
 The main script will ask you for a number of inputs:
 
-    Order ID:
-        You should have created your initial Prebid Order before running the script. You will also need to
-        have created one line item at the same time. Make a note of what $ value this line item contains.
+Order ID:
+    You should have created your initial Prebid Order before running the script. You will also need to
+    have created one line item at the same time. Make a note of what $ value this line item contains.
 
-        Let's pretend you created the line item Prebid_0.01. This script will ask you what line item you first
-        want to create, as well as the increments each line item increases by.
-        With Prebid_0.01 already created, your starting amount should be 0.02 if incrementing in 1c amounts.
-        Your starting amount should be 0.06 if incrementing in 5c amounts, and so on.
+    Let's pretend you created the line item Prebid_0.01. This script will ask you what line item you first
+    want to create, as well as the increments each line item increases by.
+    With Prebid_0.01 already created, your starting amount should be 0.02 if incrementing in 1c amounts.
+    Your starting amount should be 0.06 if incrementing in 5c amounts, and so on.
 
-        Make sure you work out exactly which line item you want to start with, what increments you want, and the exact
-        amount of line items you want to create at that increment.
+    Make sure you work out exactly which line item you want to start with, what increments you want, and the exact
+    amount of line items you want to create at that increment.
 
-        DFP has a maximum line item limit of 450 per order. So the maximum you can create per script is 449.
+    DFP has a maximum line item limit of 450 per order. So the maximum you can create per script is 449.
 
-    Placement ID:
-        The DFP API requires us submit placements, not ad units. To create a placement, go to the inventory tab in DFP.
-        Under ad units, select Placements and create a new placement. Include all the ad units you wish to use
-        in Prebid.
-        Exactly the same as the Key ID, you will need to grab your Placement ID from the URL.
+Placement ID:
+    The DFP API requires us submit placements, not ad units. To create a placement, go to the inventory tab in DFP.
+    Under ad units, select Placements and create a new placement. Include all the ad units you wish to use
+    in Prebid.
+    Exactly the same as the Key ID, you will need to grab your Placement ID from the URL.
 
-    Creative IDs:
-        If you have never created a Prebid creative before, navigate to the following URL:
-            http://prebid.org/adops/step-by-step.html#step-2-add-a-creative
-        Navigate to the default Prebid line item you created above and create 1 third-party creative with
-        the javascript snipped specified in Step 2 of prebid.org:
+Creative IDs:
+    If you have never created a Prebid creative before, navigate to the following URL:
+        http://prebid.org/adops/step-by-step.html#step-2-add-a-creative
+    Navigate to the default Prebid line item you created above and create 1 third-party creative with
+    the javascript snipped specified in Step 2 of prebid.org:
 
-        <script>
-                var w = window;
-            for (i = 0; i < 10; i++) {
-              w = w.parent;
-              if (w.pbjs) {
-                try {
-                  w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%');
-                  break;
-                } catch (e) {
-                  continue;
-                }
-              }
+    <script>
+            var w = window;
+        for (i = 0; i < 10; i++) {
+          w = w.parent;
+          if (w.pbjs) {
+            try {
+              w.pbjs.renderAd(document, '%%PATTERN:hb_adid%%');
+              break;
+            } catch (e) {
+              continue;
             }
-        </script>
+          }
+        }
+    </script>
 
-        You will need to create one of these creatives for each ad unit you plan on using. 6 ad units = 6 creatives.
-        Ensure that you make each creative the size of the ad units you are targeting. Three 728x90 ad units =
-        Three Prebid creatives size 720x90.
+    You will need to create one of these creatives for each ad unit you plan on using. 6 ad units = 6 creatives.
+    Ensure that you make each creative the size of the ad units you are targeting. Three 728x90 ad units =
+    Three Prebid creatives size 720x90.
 
-        Take note of each of these creative IDs, which can be found in the URL of each creative:
-            https://www.google.com/dfp/123#delivery/PreviewCreative/orderId=1234&lineItemId=1234&creativeId=1234
+    Take note of each of these creative IDs, which can be found in the URL of each creative:
+        https://www.google.com/dfp/123#delivery/PreviewCreative/orderId=1234&lineItemId=1234&creativeId=1234
 
-        When the script asks you for these IDs, enter them in the following format:
-            123456,123456,123456,123456
+    When the script asks you for these IDs, enter them in the following format:
+        123456,123456,123456,123456
 
-        You can skip the creation step if you already have creatives setup.
+    You can skip the creation step if you already have creatives setup.
 
-    Key ID:
-        The ID of your prebid hb_pb key. We collected this ID in Step 2b
+Key ID:
+    The ID of your prebid hb_pb key. We collected this ID in Step 2b
 
-    Increment:
-        Please ensure the increment value you specify is in decimal format:
-            1c increment = 0.01
-            10c increment is 0.1
-            $1 increment is 1.00
-            And so on.
+Increment:
+    Please ensure the increment value you specify is in decimal format:
+        1c increment = 0.01
+        10c increment is 0.1
+        $1 increment is 1.00
+        And so on.
 
-    Starting Amount:
-        Please ensure this value is also a decimal.
-            $1 starting value = 1.00
-            1c starting value = 0.01
+Starting Amount:
+    Please ensure this value is also a decimal.
+        $1 starting value = 1.00
+        1c starting value = 0.01
 
-    Number of Lines:
-        The number of line items you want to create. This value can be a standard number, not a decimal.
-        DFP has a line item limit of 449, plus the default line item you created.
+Number of Lines:
+    The number of line items you want to create. This value can be a standard number, not a decimal.
+    DFP has a line item limit of 449, plus the default line item you created.
+
+Make sure you plan out your line items carefully. Create a dummy Order to practice on and try the script a few times.
 
 
 ###Step 4 - Run the main script
 
+Simply type "python main" into the terminal, press enter, and input your information when you are prompted.
+The script will run continuously until it is completed.
+
+Please feel free to reach out with any questions, feedback, or requests.
