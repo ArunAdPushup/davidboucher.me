@@ -14,7 +14,18 @@ want to use for Prebid. Go do that now if you haven't already and enter the ID b
 
 ''')
 
-placement_id = str(input("Please enter your placement ID here: ->>>> "))
+adunit_id = input('''
+
+Please enter the Ad Unit Id you want to associate with each line item. These can be found here:
+    dfp ->> inventory tab ->>> ad units - >>> search for your ad unit ->> URL
+
+    https://www.google.com/dfp/1234#inventory/inventory/adSlotId=123456
+
+Please paste them in the following format:
+1234567890,23456788,1234567890
+
+''').split(',')
+adunit_id = list(map(int, adunit_id))
 creative_ids = input('''
 
 
@@ -27,7 +38,7 @@ Please enter all the IDs you wish to use in the following format:
 1234567890,23456788,1234567890
 ->>>> ''').split(',')
 creative_id = list(map(int, creative_ids))
-print(creative_id)
+
 
 key_id = str(input('''
 
@@ -72,7 +83,7 @@ def main():
 
 
     getValues = getTargetingValues.getValueID(key_id=key_id, path=credential_path).main()
-    createLineItems = createLineItem.createLineItem(key_id=key_id, path=credential_path, order_id=order_id, placement_id=placement_id,increment=increment,startingAmount=startingAmount,numberOfLines=numberOfLines).main(targetingValues=getValues)
+    createLineItems = createLineItem.createLineItem(key_id=key_id, path=credential_path, order_id=order_id, adunit_id=adunit_id,increment=increment,startingAmount=startingAmount,numberOfLines=numberOfLines).main(targetingValues=getValues)
     print("Now getting all line Item IDs and assigning your prebid creatives to them")
     getLineItem = getLineItems.getLineItemID(path=credential_path, order_id=order_id).main()
     for line_item in getLineItem:

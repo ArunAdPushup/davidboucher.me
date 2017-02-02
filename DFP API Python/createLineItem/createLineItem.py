@@ -2,15 +2,23 @@ from googleads import dfp
 from datetime import *
 
 class createLineItem:
-    def __init__(self, path, order_id, placement_id, increment, startingAmount, numberOfLines,key_id):
+    def __init__(self, path, order_id, adunit_id, increment, startingAmount, numberOfLines,key_id):
         self.path = path
         self.client = dfp.DfpClient.LoadFromStorage(self.path)
         self.order_id = order_id
-        self.placement_id = placement_id
+        self.adunit_id = []
         self.increment = increment
         self.startingAmount = startingAmount
         self.numberOfLines = numberOfLines
         self.key_id = key_id
+
+        for adunit in adunit_id:
+            self.adunit_id.append({
+                'adUnitId': '%s' % (adunit),
+                'includeDescendants': True
+            })
+        print (self.adunit_id)
+
 
 
     def main(self, targetingValues):
@@ -54,7 +62,7 @@ class createLineItem:
                 },
                 'targeting': {
                     'inventoryTargeting': {
-                        'targetedPlacementIds': '%s' % (self.placement_id)
+                        'targetedAdUnits': self.adunit_id
                     },
                     'customTargeting': {
                         'xsi_type': 'CustomCriteriaSet',

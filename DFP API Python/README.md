@@ -112,11 +112,15 @@ Order ID:
 
     DFP has a maximum line item limit of 450 per order. So the maximum you can create per script is 449.
 
-Placement ID:
-    The DFP API requires us submit placements, not ad units. To create a placement, go to the inventory tab in DFP.
-    Under ad units, select Placements and create a new placement. Include all the ad units you wish to use
-    in Prebid.
-    Exactly the same as the Key ID, you will need to grab your Placement ID from the URL.
+Ad Unit ID:
+    You can find your Ad Unit IDs by going to the Inventory tab of DFP. Click on Ad Units in the sidebar
+    and search for the ad units you want to use. The Ad Slot ID will be in the URL:
+
+    https://www.google.com/dfp/1234#inventory/inventory/adSlotId=123456
+
+    Please paste the ad unit IDs in the following format:
+
+    1234567890,23456788,1234567890
 
 Creative IDs:
     If you have never created a Prebid creative before, navigate to the following URL:
