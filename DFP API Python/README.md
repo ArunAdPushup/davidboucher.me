@@ -33,7 +33,7 @@ Under the 'authorized Redirect URLs' section, enter a random URL.
 When we are making a request to this API to generate our tokens, DFP will use direct us to this URL which contains
 the information we need.
 
-When you are done, click Create and take note of your Client ID and Client Secret. We will need them in Step 2.
+When you are done, click Create and take note of your Client ID, Refresh URL, and Client Secret. We will need them in Step 2.
 
 
 ###Step 2 - Running Credentials script
