@@ -36,7 +36,7 @@ Under the 'authorized Redirect URLs' section, enter a random URL.
 
 <img width="671" alt="dfpcredentialstep4" src="https://cloud.githubusercontent.com/assets/17837150/22405587/f780702c-e5f9-11e6-8561-3be270258697.png">
 
-When we are making a request to this API to generate our tokens, DFP will use direct us to this URL which contains
+When we are making a request to this API to generate our tokens, DFP will direct us to this URL which contains
 the information we need.
 
 When you are done, click Create and take note of your Client ID, Refresh URL, and Client Secret. We will need them in Step 2.
