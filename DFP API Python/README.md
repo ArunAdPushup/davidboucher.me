@@ -2,6 +2,12 @@
 
 ##Setup Work
 
+You will need python on your computer to execute this script. Head over to https://www.python.org/downloads/
+and download Python 3.6.
+
+After installing it on your machine, you should be able to execute scripts from the terminal simply by typing
+'python script.name', when in the file's directory.
+
 ###Step 1 - Getting Credentials
 
 We first need to collect security credentials. Navigate to:
@@ -25,7 +31,7 @@ Name your project whatever you like. When that is created, click on 'Create Cred
 
 <img width="428" alt="dfpcredentialstep3" src="https://cloud.githubusercontent.com/assets/17837150/22405588/f7808fbc-e5f9-11e6-8c11-5595f19b175f.png">
 
-The application type should be 'Web Application.' Enter a name: I Called mine DFP API Python.
+The application type should be 'Web Application.' Enter a name: I called mine DFP API Python.
 Under the 'authorized Redirect URLs' section, enter a random URL.
 
 <img width="671" alt="dfpcredentialstep4" src="https://cloud.githubusercontent.com/assets/17837150/22405587/f780702c-e5f9-11e6-8561-3be270258697.png">
