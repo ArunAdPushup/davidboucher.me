@@ -4,37 +4,44 @@
     <meta charset="utf-8">
     <title>Title for Chrome Extension</title>
     <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js.cookie.js"></script>
   </head>
   <body>
+    <section class="Section">
+      <button id="refreshBids">Refresh Ad Units on Page</button>
+    </section>
+
+    <section class="Section">
+      <input id="bidderCode"></input>
+      <button id="bidderButton">Force High Bid for Bidder</button>
+      <div>This value should match the "Bidder" value in the table below</div>
+    </section>
+
+    <section class="Section">
+      <div id="currentTimeout"></div>
+      <div>
+        <input id="newTimeout"></input>
+        <button id="timeoutButton">Set New Prebid Timeout</button>
+      </div>
+    </section>
+
     <table id="prebidTable">
+        <thead>
           <tr id="tableHeader">
+            <th>Prebid Bid ID</th>
             <th>Bidder</th>
             <th>CPM</th>
-            <th>timeToRespond</th>
+            <th>Response Time</th>
             <th>Ad Unit Code</th>
+            <th>Won Ad Unit Auction?</th>
+            <th>Winning Bid Sent to DFP?</th>
             <th>Won DFP Auction?</th>
         </tr>
+        <tfoot id="tableBody"></tfoot>
+        <tbody id="tableFoot"></tbody>
+        </thead>
     </table>
-    <script type="text/javascript" src="popup.js"></script>
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-      }
-      td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-      #wonTrue {
-        color: red;
-      }
-      #wonFalse {
-        color: blue;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+      <script type="text/javascript" src="popup.js"></script>
   </body>
 </html>

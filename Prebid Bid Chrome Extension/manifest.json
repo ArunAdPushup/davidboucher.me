@@ -9,7 +9,12 @@
   },
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "<all_urls>",
+    "webRequest",
+    "http://*/*",
+    "https://*/*",
+    "webRequestBlocking"
   ],
   "background": {
     "scripts": ["backgroundScript.js"]
