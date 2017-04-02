@@ -1,3 +1,27 @@
+function setCookie(name, value){
+  var d = new Date();
+  d.setTime(d.getTime() + (1*24*60*60*1000));
+  var expires = `expires=${d.toUTCString()}`;
+  document.cookie = `${name}=${value};${expires};path=/`;
+  console.log(`${name}=${value};${expires};path=/`);
+};
+
+function getCookie(cookieName){
+  let name = `${cookieName}=`;
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return false;
+};
+
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {greeting: "getPrebidResponses"}, function(response) {
   });
@@ -61,7 +85,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         let winningRow;
         let winningBid;
         let bidSubmitted;
-        (Cookies.get(value.adId)) ? bidSubmitted = "<td id='wonTrue'>Yes</td>" : bidSubmitted = "<td id='wonFalse'>No</td>";
+        (getCookie(value.adId)) ? bidSubmitted = `<td id='wonTrue'>Yes</td>` : bidSubmitted = `<td id='wonFalse'>No</td>`;
         (winningID.indexOf(value.adId) > -1) ? winningRow = "<td id='wonTrue'>Yes</td>" : winningRow = "<td id='wonFalse'>No</td>";
         (topBidsID.indexOf(value.adId) > -1) ? winningBid = "<td id='wonTrue'>Yes</td>" : winningBid = "<td id='wonFalse'>No</td>";
 
@@ -76,7 +100,7 @@ chrome.webRequest.onHeadersReceived.addListener(function(e) {
   if ((e.url).search("gampad/ads") != -1) {
     var fixedURL = (e.url).replace(/%3D/g, '=').replace(/%26/g, '&').match(/hb_adid=([^&]*)/);
     if (fixedURL !== null) {
-      Cookies.set(fixedURL[1], fixedURL[1], {expires: 1});
+      setCookie(fixedURL[1], fixedURL[1]);
     }
   }
 

@@ -20,7 +20,7 @@
     "scripts": ["backgroundScript.js"]
   },
   "externally_connectable": {
-  "matches": ["*://*.*****.*****/*"],
+  "matches": ["*://*.speedtest.net/*"],
   "ids": ["*"]
 },
   "content_scripts": [
