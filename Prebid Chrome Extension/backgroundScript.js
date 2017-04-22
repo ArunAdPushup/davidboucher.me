@@ -3,7 +3,7 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
       type: "popup"
     })[0];
     if (request.greeting === "prebidBids") {
-        chrome.runtime.sendMessage({greeting: "prebidBids", prebid: request.message, timeout: request.timeout, topAdUnitBids: request.topAdUnitBids});
+        chrome.runtime.sendMessage({greeting: "prebidBids", prebid: request.message, timeout: request.timeout});
     } else if (request.greeting === "prebidTimeout") {
         chrome.runtime.sendMessage({greeting: "setTimeout", timeout: request.timeout});
     }

@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener(
     switch (request.greeting) {
 
       case "getPrebidResponses":
-        addJS(`var unitbids = window.pbjs.getHighestCpmBids(); chrome.runtime.sendMessage('${chrome.runtime.id}',{greeting: 'prebidBids',message: window.pbjs, timeout: PREBID_TIMEOUT, topAdUnitBids: unitbids});`);
+        addJS(`chrome.runtime.sendMessage('${chrome.runtime.id}',{greeting: 'prebidBids',message: window.pbjs, timeout: PREBID_TIMEOUT});`);
         break;
 
       case "refreshBids":

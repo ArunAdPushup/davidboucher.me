@@ -67,29 +67,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.greeting === "prebidBids") {
     $("#currentTimeout").html("Current Prebid Timeout Is: " + request.timeout);
     var winningID = [];
-    var topBidsID = [];
 
     if (request.prebid._winningBids.length > 0) {
       $.each(request.prebid._winningBids, function(index, value) {
         winningID.push(value.adId);
       })
     }
-    if (request.topAdUnitBids.length > 0) {
-      $.each(request.topAdUnitBids, function(index, value) {
-        topBidsID.push(value.adserverTargeting.hb_adid);
-      })
-    }
 
     $.each(request.prebid._bidsReceived, function(index, value) {
       if (request.timeout >= value.timeToRespond) {
         let winningRow;
-        let winningBid;
         let bidSubmitted;
         (getCookie(value.adId)) ? bidSubmitted = `<td id='wonTrue'>Yes</td>` : bidSubmitted = `<td id='wonFalse'>No</td>`;
-        (winningID.indexOf(value.adId) > -1) ? winningRow = "<td id='wonTrue'>Yes</td>" : winningRow = "<td id='wonFalse'>No</td>";
-        (topBidsID.indexOf(value.adId) > -1) ? winningBid = "<td id='wonTrue'>Yes</td>" : winningBid = "<td id='wonFalse'>No</td>";
+        (winningID.indexOf(value.adId) !== -1) ? winningRow = "<td id='wonTrue'>Yes</td>" : winningRow = "<td id='wonFalse'>No</td>";
 
-        let auctionRow = `<tr><td>${value.adId}</td><td>${value.bidder}</td><td>${Number(value.cpm).toFixed(2)}</td><td>${value.timeToRespond}ms</td><td>${value.adUnitCode}</td>${winningBid}${bidSubmitted}${winningRow}</tr>`;
+        let auctionRow = `<tr><td>${value.adId}</td><td>${value.bidder}</td><td>${Number(value.cpm).toFixed(2)}</td><td>${value.timeToRespond}ms</td><td>${value.adUnitCode}</td>${bidSubmitted}${winningRow}</tr>`;
         $("#tableFoot").append(auctionRow);
       }
     });
